@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:scridle/myfirebase/create_room_methods.dart';
 import 'package:scridle/mymodels/myplayers.dart';
 import 'package:scridle/screens/paint_screen.dart';
+import 'package:scridle/screens/view_room.dart';
 import 'package:scridle/utils/colors.dart';
 import 'package:scridle/widgets/MyTextField.dart';
 import 'package:scridle/widgets/my_appbar.dart';
@@ -67,7 +68,7 @@ class _CreateRoomState extends State<CreateRoom> {
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 25,
             ),
             MyTextField(
                 nameController: _namecontroller, myhintText: "Enter Your Name"),
@@ -81,7 +82,7 @@ class _CreateRoomState extends State<CreateRoom> {
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 25,
             ),
             MyTextField(
                 nameController: _roomcontroller,
@@ -124,7 +125,7 @@ class _CreateRoomState extends State<CreateRoom> {
                   children: [
                     Center(
                       child: Text(
-                        "Max no. of rounds",
+                        "Max Rounds",
                         style: GoogleFonts.fredokaOne(fontSize: 15),
                       ),
                     ),
@@ -148,7 +149,7 @@ class _CreateRoomState extends State<CreateRoom> {
               ],
             ),
             const SizedBox(
-              height: 50,
+              height: 30,
             ),
             InkWell(
               borderRadius: BorderRadius.circular(30),
@@ -161,12 +162,19 @@ class _CreateRoomState extends State<CreateRoom> {
                     _roomcontroller.text.isNotEmpty) {
                   _createhere.createRoom();
                   _createhere.registerPlayer();
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => PaintScreen(
+                  //               code: _roomcontroller.text,
+                  //             )));
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PaintScreen(
-                                code: _roomcontroller.text,
-                              )));
+                        builder: (context) => ViewRoom(
+                          title: "Room",
+                        ),
+                      ));
                 }
               },
               child: const Padding(
